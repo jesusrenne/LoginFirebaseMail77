@@ -18,12 +18,13 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
+import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
     Button btn_login,btn_registrar,btn_recuperar;
     EditText et_mail,et_pass;
 
-    //Código del login
+    //Extensiones importantes para validar campos
     AwesomeValidation awesomeValidation;
     FirebaseAuth firebaseAuth;
 
@@ -39,13 +40,21 @@ public class MainActivity extends AppCompatActivity {
         btn_recuperar = findViewById(R.id.btn_recuperar);
         btn_registrar = findViewById(R.id.btn_registrar);
 
+        //Si hay un login creado
+        firebaseAuth = FirebaseAuth.getInstance();
+        FirebaseAuth mAutor = FirebaseAuth.getInstance();
+        FirebaseUser user = mAutor.getCurrentUser();
+        if(user!= null){
+            irahome();
+        }
+
         //Validar los campos
         firebaseAuth = FirebaseAuth.getInstance();
         awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
         awesomeValidation.addValidation(this,R.id.et_mail, Patterns.EMAIL_ADDRESS,R.string.invalid_mail);
         awesomeValidation.addValidation(this,R.id.et_pass,".{6,}",R.string.invalid_password);
 
-
+        //Registrar los datos del usuario
         btn_registrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -81,6 +90,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //Recuperar contraseña
         btn_recuperar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -92,6 +102,7 @@ public class MainActivity extends AppCompatActivity {
 
     }//fin del oncreate!
 
+    //Método para ir a HomeActivity
     private void irahome(){
         Intent i = new Intent(this, HomeActivity.class);
         i.putExtra("mail",et_mail.getText().toString());
