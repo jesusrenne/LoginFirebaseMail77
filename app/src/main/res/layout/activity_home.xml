@@ -9,23 +9,23 @@
     tools:context=".HomeActivity">
 
     <TextView
-        android:textSize="25sp"
-        android:textColor="#000"
-        android:text="Login con exito"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:text="Bienvenido"
+        android:textColor="#000"
+        android:textSize="25sp">
 
     </TextView>
 
     <Button
         android:id="@+id/btn_cerrar"
-        android:layout_marginTop="10dp"
-        android:textColor="#fff"
-        android:padding="10dp"
-        android:background="@color/colorPrimary"
-        android:text="Cerrar sesion"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background=" #2ECC71"
+        android:padding="10dp"
+        android:text="CERRAR SESIÓN"
+        android:textColor="#fff">
 
     </Button>
 
